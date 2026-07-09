@@ -11,6 +11,12 @@
   <properties>
     <spotless.license-header.file>${project.basedir}/../../../../../../tools/configs/checkstyle/license-header.txt</spotless.license-header.file>
   </properties>
+  <dependencies>
+    <dependency>
+      <groupId>org.web3j</groupId>
+      <artifactId>core</artifactId>
+    </dependency>
+  </dependencies>
   <build>
     <plugins>
       <plugin>
