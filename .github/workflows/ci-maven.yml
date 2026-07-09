@@ -56,7 +56,10 @@ jobs:
         run: cd specification/benchmark/java/carbon-specification-benchmark && ./mvnw install -B
 
       - name: Build && Install carbon-specification-component
-        run: cd specification/component/java/carbon-specification-component && ./mvnw install -B
+        run: |
+          cd specification/component/java/carbon-specification-component
+          ./mvnw web3j:generate-sources --pl specification-benchmark-contract/specification-benchmark-contract-evm -X
+          ./mvnw install -B
 
       - name: Build && Install carbon-spring-blockchain-component
         run: cd infrastructure/component/java/carbon-spring-blockchain-component && ./mvnw install -B
