@@ -18,9 +18,6 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="benchmark-evm-bensu" target="25" />
-      <module name="carbon-initializr" target="25" />
-      <module name="initializr-dependencies" target="25" />
-      <module name="initializr-parent" target="25" />
     </bytecodeTargetLevel>
   </component>
 </project>

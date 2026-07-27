@@ -41,6 +41,7 @@
         <groupId>org.web3j</groupId>
         <artifactId>web3j-maven-plugin</artifactId>
         <configuration>
+          <packageName>org.deepinthink.carbon.benchmark.contract.evm</packageName>
           <soliditySourceFiles>
             <directory>${project.basedir}/../../../../solidity</directory>
             <includes>
