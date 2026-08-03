@@ -11,8 +11,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          submodules: true
       - uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
@@ -33,7 +31,6 @@ jobs:
           cd tingyanshen/LFDT-web3j-web3j-sokt
           ./gradlew spotlessApply -Dorg.gradle.java.home=$JAVA_HOME_21_x64
           ./gradlew build publishToMavenLocal -x test -Dorg.gradle.java.home=$JAVA_HOME_21_x64
-
 
       - name: Setup deepinthink/amoeba
         uses: deepinthink/amoeba/.github/actions/setup-amoeba/java@main

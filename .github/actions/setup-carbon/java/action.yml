@@ -6,6 +6,7 @@ runs:
     - name: Checkout deepinthink/carbon
       uses: actions/checkout@v4
       with:
+        submodules: true
         repository: deepinthink/carbon
         path: deepinthink/carbon
 
