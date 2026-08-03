@@ -1,0 +1,38 @@
+name: Setup Carbon
+
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout deepinthink/carbon
+      uses: actions/checkout@v4
+      with:
+        repository: deepinthink/carbon
+        path: deepinthink/carbon
+
+
+    - name: Build && Install carbon-spring-blockchain
+      shell: bash
+      run: cd deepinthink/carbon/infrastructure/framework/java/carbon-spring-blockchain && ./mvnw install -B
+
+    - name: Build && Install carbon-specification-benchmark
+      shell: bash
+      run: |
+        cd deepinthink/carbon/specification/benchmark/java/carbon-specification-benchmark
+        ./mvnw web3j:generate-sources --pl specification-benchmark-contract/specification-benchmark-contract-evm -X
+        ./mvnw install -B
+
+    - name: Build && Install carbon-specification-component
+      shell: bash
+      run: cd deepinthink/carbon/specification/component/java/carbon-specification-component && ./mvnw install -B
+
+    - name: Build && Install carbon-spring-blockchain-component
+      shell: bash
+      run: cd deepinthink/carbon/infrastructure/component/java/carbon-spring-blockchain-component && ./mvnw install -B
+
+    - name: Build && Install carbon-benchmark
+      shell: bash
+      run: cd deepinthink/carbon/templates/benchmark/java/carbon-benchmark && ./mvnw install -B
+
+    - name: Build && Install carbon-initializr
+      shell: bash
+      run: cd deepinthink/carbon/tools/initializr/java/carbon-initializr && ./mvnw install -B
