@@ -11,8 +11,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          submodules: true
       - uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
@@ -34,38 +32,8 @@ jobs:
           ./gradlew spotlessApply -Dorg.gradle.java.home=$JAVA_HOME_21_x64
           ./gradlew build publishToMavenLocal -x test -Dorg.gradle.java.home=$JAVA_HOME_21_x64
 
-      - name: Checkout deepinthink/amoeba
-        uses: actions/checkout@v4
-        with:
-          repository: deepinthink/amoeba
-          path: deepinthink/amoeba
+      - name: Setup deepinthink/amoeba
+        uses: deepinthink/amoeba/.github/actions/setup-amoeba/java@main
 
-      - name: Build && Install amoeba-maven
-        run: cd deepinthink/amoeba/tools/buildtools/java/amoeba-maven && ./mvnw install -B
-
-      - name: Build && Install amoeba-external
-        run: cd deepinthink/amoeba/infrastructure/external/java/amoeba-external && ./mvnw install -B
-
-      - name: Build && Install amoeba-spring-boot
-        run: cd deepinthink/amoeba/infrastructure/framework/java/amoeba-spring-boot && ./mvnw install -B
-
-      - name: Build && Install carbon-spring-blockchain
-        run: cd infrastructure/framework/java/carbon-spring-blockchain && ./mvnw install -B
-
-      - name: Build && Install carbon-specification-benchmark
-        run: |
-          cd specification/benchmark/java/carbon-specification-benchmark
-          ./mvnw web3j:generate-sources --pl specification-benchmark-contract/specification-benchmark-contract-evm -X
-          ./mvnw install -B
-
-      - name: Build && Install carbon-specification-component
-        run: cd specification/component/java/carbon-specification-component && ./mvnw install -B
-
-      - name: Build && Install carbon-spring-blockchain-component
-        run: cd infrastructure/component/java/carbon-spring-blockchain-component && ./mvnw install -B
-
-      - name: Build && Install carbon-benchmark
-        run: cd templates/benchmark/java/carbon-benchmark && ./mvnw install -B
-
-      - name: Build && Install carbon-initializr
-        run: cd tools/initializr/java/carbon-initializr && ./mvnw install -B
+      - name: Setup deepinthink/carbon
+        uses: ./.github/actions/setup-carbon/java
