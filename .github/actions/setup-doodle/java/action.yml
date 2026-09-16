@@ -16,6 +16,10 @@ runs:
         path: deepinthink/carbon
         ref: ${{ inputs.ref }}
 
+    - name: Build && Install carbon-specification-component
+      shell: bash
+      run: cd deepinthink/carbon/specification/component/java/carbon-specification-component && ./mvnw install -B
+
     - name: Build && Install carbon-specification-iot
       shell: bash
       run: cd deepinthink/carbon/specification/iot/java/carbon-specification-iot && ./mvnw install -B
@@ -28,6 +32,11 @@ runs:
       shell: bash
       run: cd deepinthink/carbon/infrastructure/benchmark/java/carbon-spring-iot-benchmark && ./mvnw install -B
 
+    - name: Build && Install carbon-spring-iot-gateway
+      shell: bash
+      run: cd deepinthink/carbon/components/gateway/java/carbon-spring-iot-gateway && ./mvnw install -B
+
     - name: Build && Install carbon-benchmark
       shell: bash
       run: cd deepinthink/carbon/templates/benchmark/java/carbon-benchmark && ./mvnw install -B
+
